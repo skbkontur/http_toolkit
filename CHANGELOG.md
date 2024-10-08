@@ -2,6 +2,6 @@
 
 ### 1.0.0
 
-**Date:** [24.07.24]
+**Date:** [08.10.24]
 
-* Library for creating HTTP clients to various services based on HTTPX
+* Library for creating HTTP clients to various services with flexible transport customization
