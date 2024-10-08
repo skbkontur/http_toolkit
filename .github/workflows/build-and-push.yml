@@ -1,0 +1,102 @@
+name: http-toolkit-build-and-push
+on:
+  workflow_run:
+    workflows:
+      - http-toolkit-test
+    types:
+      - completed
+    branches:
+      - 'main'
+  push:
+    tags:
+      - '*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      BUILD_DEPENDENCIES: "build~=0.10.0"
+    steps:
+      - uses: actions/checkout@v4
+      - name: python-build
+        uses: ./.github/actions/python-build
+      - name: install-dependencies
+        run: python3 -m pip install $BUILD_DEPENDENCIES $PUSH_DEPENDENCIES
+      - name: build
+        run: |
+          ls .
+          python -m build
+      - name: store-dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+  publish-to-pypi:
+    needs:
+       - build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/http_toolkit
+    permissions:
+      id-token: write
+    steps:
+      - name: Download all the dists
+        uses: actions/download-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+      - name: Publish distribution 📦 to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+  check-release-exists:
+    needs:
+      - publish-to-pypi
+    runs-on: ubuntu-latest
+    outputs:
+      release-exists: ${{ steps.check-release.outputs.release-exists }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Release Existence Action
+        id: check-release
+        uses: insightsengineering/release-existence-action@v1.0.0
+        with:
+          release-tag: ${{github.ref_name}}
+  github-release:
+    name: >-
+      Sign the Python 🐍 distribution 📦 with Sigstore
+      and upload them to GitHub Release
+    needs:
+      - check-release-exists
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # IMPORTANT: mandatory for making GitHub Releases
+      id-token: write  # IMPORTANT: mandatory for sigstore
+    steps:
+      - name: Download all the dists
+        uses: actions/download-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+      - name: Sign the dists with Sigstore
+        uses: sigstore/gh-action-sigstore-python@v2.1.1
+        with:
+          inputs: >-
+            ./dist/*.tar.gz
+            ./dist/*.whl
+      - name: Create GitHub Release
+        if: ${{ needs.check-release-exists.outputs.release-exists == 'false' }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create
+          '${{ github.ref_name }}'
+          --repo '${{ github.repository }}'
+          --notes ""
+      - name: Upload artifact signatures to GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          gh release upload
+          '${{ github.ref_name }}' dist/**
+          --repo '${{ github.repository }}'
+
+
