@@ -7,7 +7,7 @@ name = "http_toolkit"
 authors = [{name="Kontur", email = "python@skbkontur.ru"}]
 description = "Library for creating HTTP clients to various services with flexible transport customization"
 readme = "README.md"
-requires-python = ">=3.8, <3.13"
+requires-python = ">=3.9, <3.14"
 dependencies = ["httpx~=0.24.1"]
 dynamic = ["version"] # The version is imported from the module attribute specified in section [tool.setuptools.dynamic]
 classifiers = [
@@ -22,11 +22,11 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: System :: Networking",
     "Topic :: Internet :: WWW/HTTP",
@@ -50,7 +50,7 @@ tee = true
 
 [tool.black]
 line-length = 119
-target-version = ["py37"]
+target-version = ["py39"]
 
 [tool.mypy]
 ignore_missing_imports = true

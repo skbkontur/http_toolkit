@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        minor_versions: [8, 9, 10, 11, 12]
+        minor_versions: [9, 10, 11, 12, 13]
     steps:
       - name: Set up Python
         uses: actions/setup-python@v5
