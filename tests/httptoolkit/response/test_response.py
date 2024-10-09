@@ -15,8 +15,8 @@ def response():
     original_response.status_code = 200
     original_response.reason_phrase = "OK"
     original_response.headers = {"ResponseHeader": "response-header"}
-    original_response.content = b"Schwarzenegger is a woman!"
-    original_response.text = "Schwarzenegger is a woman!"
+    original_response.content = b"It's a boring text for test!"
+    original_response.text = "It's a boring text for test!"
     original_response.json.return_value = {"Foo": "bar"}
     original_response.elapsed = timedelta(182)
 
@@ -44,11 +44,11 @@ def test_headers(response):
 
 
 def test_content(response):
-    assert response.content == b"Schwarzenegger is a woman!"
+    assert response.content == b"It's a boring text for test!"
 
 
 def test_text(response):
-    assert response.text == "Schwarzenegger is a woman!"
+    assert response.text == "It's a boring text for test!"
 
 
 def test_json(response):

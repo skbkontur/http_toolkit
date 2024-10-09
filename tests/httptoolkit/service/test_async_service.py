@@ -47,7 +47,7 @@ async def test_requests_when_successful(
     async_service: AsyncService,
     httpx_mock: HTTPXMock,
 ):
-    response_text = "Schwarzenegger is a woman!"
+    response_text = "It's a boring text for test!"
     path = "/some/path"
 
     httpx_mock.add_response(
@@ -80,7 +80,7 @@ async def test_stream_requests_when_successful(
     async_service: AsyncService,
     httpx_mock: HTTPXMock,
 ):
-    response_text = "Schwarzenegger is a woman!"
+    response_text = "It's a boring text for test!"
     path = "/some/path"
 
     httpx_mock.add_response(
@@ -106,7 +106,7 @@ async def test_stream_requests_when_successful(
 
 @pytest.mark.asyncio
 async def test_post_when_request_successful(async_service: AsyncService, httpx_mock: HTTPXMock):
-    response_text = "Schwarzenegger is a woman!"
+    response_text = "It's a boring text for test!"
     path = "/some/path"
 
     httpx_mock.add_response(
