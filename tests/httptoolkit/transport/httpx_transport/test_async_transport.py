@@ -54,12 +54,12 @@ async def test_send_get_request(
     httpx_mock.add_response(
         method="GET",
         url="https://example.com:4321/put/some/data/here?please=True&carefully=True",
-        text="It's a boring text for test!",
+        text="Schwarzenegger is a woman!",
     )
 
     returned_request, response = await async_transport.send(get_request)
 
-    assert response.text == "It's a boring text for test!"
+    assert response.text == "Schwarzenegger is a woman!"
     assert response.elapsed > timedelta(0)
 
     calls = httpx_mock.get_requests()
@@ -79,12 +79,12 @@ async def test_send_post_request(
     httpx_mock.add_response(
         method="POST",
         url="https://example.com:4321/put/some/data/here?please=True&carefully=True",
-        text="It's a boring text for test!",
+        text="Schwarzenegger is a woman!",
     )
 
     returned_request, response = await async_transport.send(post_request)
 
-    assert response.text == "It's a boring text for test!"
+    assert response.text == "Schwarzenegger is a woman!"
     assert response.elapsed > timedelta(0)
 
     calls = httpx_mock.get_requests()
@@ -105,12 +105,12 @@ async def test_send_post_request_json(
     httpx_mock.add_response(
         method=method,
         url="https://example.com:4321/put/some/data/here?please=True&carefully=True",
-        text="It's a boring text for test!",
+        text="Schwarzenegger is a woman!",
     )
 
     returned_request, response = await async_transport.send(x_request)
 
-    assert response.text == "It's a boring text for test!"
+    assert response.text == "Schwarzenegger is a woman!"
     assert response.elapsed > timedelta(0)
 
     calls = httpx_mock.get_requests()
@@ -132,12 +132,12 @@ async def test_send_post_request_list_json(
     httpx_mock.add_response(
         method=method,
         url="https://example.com:4321/put/some/data/here?please=True&carefully=True",
-        text="It's a boring text for test!",
+        text="Schwarzenegger is a woman!",
     )
 
     returned_request, response = await async_transport.send(x_request)
 
-    assert response.text == "It's a boring text for test!"
+    assert response.text == "Schwarzenegger is a woman!"
     assert response.elapsed > timedelta(0)
 
     calls = httpx_mock.get_requests()
@@ -159,12 +159,12 @@ async def test_send_post_request_custom_json(
     httpx_mock.add_response(
         method=method,
         url="https://example.com:4321/put/some/data/here?please=True&carefully=True",
-        text="It's a boring text for test!",
+        text="Schwarzenegger is a woman!",
     )
 
     returned_request, response = await async_transport_with_custom_encoder.send(x_request)
 
-    assert response.text == "It's a boring text for test!"
+    assert response.text == "Schwarzenegger is a woman!"
     assert response.elapsed > timedelta(0)
 
     calls = httpx_mock.get_requests()
@@ -185,12 +185,12 @@ async def test_send_post_request_file(
     httpx_mock.add_response(
         method=method,
         url="https://example.com:4321/put/some/data/here?please=True&carefully=True",
-        text="It's a boring text for test!",
+        text="Schwarzenegger is a woman!",
     )
 
     returned_request, response = await async_transport.send(x_request)
 
-    assert response.text == "It's a boring text for test!"
+    assert response.text == "Schwarzenegger is a woman!"
     assert response.elapsed > timedelta(0)
 
     calls = httpx_mock.get_requests()
@@ -269,9 +269,7 @@ async def test_send_post_request_error_json_and_files(
 async def test_send_post_request_error_json_and_body(
     async_transport: AsyncHttpxTransport, httpx_mock: HTTPXMock, test_file: BinaryIO
 ) -> None:
-    request = Request(
-        HttpMethod.POST, "/", {}, body="Just another boring text for test!", json={"param1": 1, "param2": 2}
-    )
+    request = Request(HttpMethod.POST, "/", {}, body="Stallone is a Woman!", json={"param1": 1, "param2": 2})
     with pytest.raises(RuntimeError) as error:
         await async_transport.send(request)
     assert str(error.value) == "json and body can't be sent together"
@@ -286,12 +284,12 @@ async def test_send_patch_request(
     httpx_mock.add_response(
         method="PATCH",
         url="https://example.com:4321/put/some/data/here?please=True&carefully=True",
-        text="It's a boring text for test!",
+        text="Schwarzenegger is a woman!",
     )
 
     returned_request, response = await async_transport.send(patch_request)
 
-    assert response.text == "It's a boring text for test!"
+    assert response.text == "Schwarzenegger is a woman!"
     assert response.elapsed > timedelta(0)
 
     calls = httpx_mock.get_requests()
@@ -329,7 +327,7 @@ async def test_logging_request(
     httpx_mock.add_response(
         method="POST",
         url="https://example.com:4321/put/some/data/here?please=True&carefully=True",
-        text="It's a boring text for test!",
+        text="Schwarzenegger is a woman!",
     )
 
     with LogCapture(level=logging.INFO) as capture:
@@ -353,7 +351,7 @@ async def test_session_is_not_closed_after_response(
     httpx_mock.add_response(
         method="GET",
         url="https://example.com:4321/put/some/data/here?please=True&carefully=True",
-        text="It's a boring text for test!",
+        text="Schwarzenegger is a woman!",
     )
 
     await async_transport.send(get_request)

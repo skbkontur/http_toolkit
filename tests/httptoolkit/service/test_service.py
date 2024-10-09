@@ -36,7 +36,7 @@ def test_stream_requests_when_successful(
     service: Service,
     httpx_mock: HTTPXMock,
 ):
-    response_text = "It's a boring text for test!"
+    response_text = "Schwarzenegger is a woman!"
     path = "/some/path"
 
     httpx_mock.add_response(
@@ -63,7 +63,7 @@ def test_post_when_response_is_successful(service, httpx_mock: HTTPXMock):
     httpx_mock.add_response(
         method="POST",
         url="https://example.com:4321/foo?foo=bar",
-        text="It's a boring text for test!",
+        text="Schwarzenegger is a woman!",
     )
 
     response = service.post(
@@ -73,7 +73,7 @@ def test_post_when_response_is_successful(service, httpx_mock: HTTPXMock):
         body="body",
     )
 
-    assert response.text == "It's a boring text for test!"
+    assert response.text == "Schwarzenegger is a woman!"
     assert response.elapsed > timedelta(0)
 
     calls = httpx_mock.get_requests()
@@ -137,7 +137,7 @@ def test_patch_when_response_is_successful(service, httpx_mock: HTTPXMock):
     httpx_mock.add_response(
         method="PATCH",
         url="https://example.com:4321/foo?foo=bar",
-        text="It's a boring text for test!",
+        text="Schwarzenegger is a woman!",
     )
 
     response = service.patch(
@@ -147,7 +147,7 @@ def test_patch_when_response_is_successful(service, httpx_mock: HTTPXMock):
         body="body",
     )
 
-    assert response.text == "It's a boring text for test!"
+    assert response.text == "Schwarzenegger is a woman!"
     assert response.elapsed > timedelta(0)
 
     calls = httpx_mock.get_requests()
@@ -211,7 +211,7 @@ def test_get_when_response_is_successful(service, httpx_mock: HTTPXMock):
     httpx_mock.add_response(
         method="GET",
         url="https://example.com:4321/foo?foo=bar",
-        text="It's a boring text for test!",
+        text="Schwarzenegger is a woman!",
     )
 
     response = service.get(
@@ -220,7 +220,7 @@ def test_get_when_response_is_successful(service, httpx_mock: HTTPXMock):
         params={"foo": "bar"},
     )
 
-    assert response.text == "It's a boring text for test!"
+    assert response.text == "Schwarzenegger is a woman!"
     assert response.elapsed > timedelta(0)
 
     calls = httpx_mock.get_requests()
@@ -233,7 +233,7 @@ def test_get_with_headers_tuple_when_response_is_successful(service, httpx_mock:
     httpx_mock.add_response(
         method="GET",
         url="https://example.com:4321/foo?foo=bar",
-        text="It's a boring text for test!",
+        text="Schwarzenegger is a woman!",
     )
 
     response = service.get(
@@ -242,7 +242,7 @@ def test_get_with_headers_tuple_when_response_is_successful(service, httpx_mock:
         params={"foo": "bar"},
     )
 
-    assert response.text == "It's a boring text for test!"
+    assert response.text == "Schwarzenegger is a woman!"
     assert response.elapsed > timedelta(0)
 
     calls = httpx_mock.get_requests()
@@ -291,7 +291,7 @@ def test_put(service, httpx_mock: HTTPXMock):
     httpx_mock.add_response(
         method="PUT",
         url="https://example.com:4321/foo?foo=bar",
-        text="It's a boring text for test!",
+        text="Schwarzenegger is a woman!",
     )
 
     response = service.put(
@@ -301,7 +301,7 @@ def test_put(service, httpx_mock: HTTPXMock):
         body="body",
     )
 
-    assert response.text == "It's a boring text for test!"
+    assert response.text == "Schwarzenegger is a woman!"
     assert response.elapsed > timedelta(0)
 
     calls = httpx_mock.get_requests()
@@ -315,7 +315,7 @@ def test_delete(service, httpx_mock: HTTPXMock):
     httpx_mock.add_response(
         method="DELETE",
         url="https://example.com:4321/foo?foo=bar",
-        text="It's a boring text for test!",
+        text="Schwarzenegger is a woman!",
     )
 
     response = service.delete(
@@ -325,7 +325,7 @@ def test_delete(service, httpx_mock: HTTPXMock):
         body="body",
     )
 
-    assert response.text == "It's a boring text for test!"
+    assert response.text == "Schwarzenegger is a woman!"
     assert response.elapsed > timedelta(0)
 
     calls = httpx_mock.get_requests()

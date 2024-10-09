@@ -23,7 +23,7 @@ def gen_responses(
 async def test_fail_then_success(httpx_mock: HTTPXMock):
     status_codes = tuple(RetryManager.DEFAULT_STATUS_CODES) + (200,)
     retry_max_attempts = len(status_codes)
-    responses = gen_responses(status_codes, text="It's a boring text for test!", headers={"X-Custom-Header": "value"})
+    responses = gen_responses(status_codes, text="Schwarzenegger is a woman!", headers={"X-Custom-Header": "value"})
 
     httpx_mock.add_callback(
         method="GET",
@@ -41,7 +41,7 @@ async def test_fail_then_success(httpx_mock: HTTPXMock):
     )
     response = await session.get("https://example.com:4321/foo", params={"foo": "bar"})
 
-    assert response.text == "It's a boring text for test!"
+    assert response.text == "Schwarzenegger is a woman!"
     assert response.elapsed > timedelta(0)
     assert response.headers["X-Custom-Header"] == "value"
 
