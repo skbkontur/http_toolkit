@@ -20,7 +20,7 @@ class DummyAsyncService(AsyncService):
 @pytest.fixture()
 def async_service() -> AsyncService:
     return DummyAsyncService(
-        transport=AsyncHttpxTransport(base_url="https://kontur.ru", proxies={"http://": "http://10.10.1.10:3128"}),
+        transport=AsyncHttpxTransport(base_url="https://example.com", proxies={"http://": "http://10.10.1.10:3128"}),
         headers=(Header(name="ServiceHeader", value="async_service-header", is_sensitive=False),),
     )
 
@@ -52,7 +52,7 @@ async def test_requests_when_successful(
 
     httpx_mock.add_response(
         method=method.upper(),
-        url="https://kontur.ru" + path,
+        url="https://example.com" + path,
         text=response_text,
     )
 
@@ -85,7 +85,7 @@ async def test_stream_requests_when_successful(
 
     httpx_mock.add_response(
         method=method.upper(),
-        url="https://kontur.ru" + path,
+        url="https://example.com" + path,
         text=response_text,
     )
 
@@ -111,7 +111,7 @@ async def test_post_when_request_successful(async_service: AsyncService, httpx_m
 
     httpx_mock.add_response(
         method="POST",
-        url="https://kontur.ru" + path + "?foo=bar",
+        url="https://example.com" + path + "?foo=bar",
         text=response_text,
     )
 
@@ -141,7 +141,7 @@ async def test_if_response_not_successful(async_service: AsyncService, httpx_moc
 
     httpx_mock.add_response(
         method="GET",
-        url="https://kontur.ru" + path + "?foo=bar",
+        url="https://example.com" + path + "?foo=bar",
         text=response_text,
         status_code=401,
     )
@@ -168,7 +168,7 @@ async def test_post_when_transport_error(async_service: AsyncService, httpx_mock
 
     httpx_mock.add_exception(
         method="POST",
-        url="https://kontur.ru" + path + "?foo=bar",
+        url="https://example.com" + path + "?foo=bar",
         exception=httpx.TimeoutException("Timeout reached"),
     )
 
@@ -202,7 +202,7 @@ async def test_json_request_with_falsy_values(
 ) -> None:
     httpx_mock.add_response(
         method=method.upper(),
-        url="https://kontur.ru/",
+        url="https://example.com/",
         text="OK",
     )
 
@@ -227,7 +227,7 @@ async def test_json_request_with_none_value(
 ) -> None:
     httpx_mock.add_response(
         method=method.upper(),
-        url="https://kontur.ru/",
+        url="https://example.com/",
         text="OK",
     )
 

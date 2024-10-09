@@ -1,7 +1,7 @@
 # http_toolkit
 The httptoolkit library is a tool for working with HTTP requests in Python that allows you to easily create, customize, and send requests to various services. It provides a simple interface for working with HTTP clients. The library also allows flexible transport customization and abstraction from a particular implementation of HTTP clients.
 
-## HTTPX_Service
+## HTTPXService
 
 If you don't need to use a configured transport, use HTTPXService (for async -> AsyncHttpxService)
 
@@ -59,7 +59,6 @@ DummyService(
 ### Sending a request
 
 ```python
-### Async
 
 from httptoolkit import Service, Header, HttpMethod
 from httptoolkit.transport import HttpxTransport
@@ -79,7 +78,7 @@ service = DummyService(
 # By method
 service.post(
     path="/somewhere",
-    headers=(Header(name="SuperSecret", value="big_secret", is_sensitive=True, create_mask=lambda value: value[-4:])),
+    headers=(Header(name="SuperSecret", value="big_secret", is_sensitive=True, create_mask=lambda value: value[-4:]),),
     params={"over": "the rainbow"},
     body="Something",
 )
@@ -88,12 +87,11 @@ service.post(
 service.request(Request(method=HttpMethod.POST, body="Request", params={}, path=""))
 ```
 
-### Sending special types
+### Sending JSON and multipart-files
 
 ```python
-from httptoolkit import Service, Header, HttpMethod
+from httptoolkit import Service, Header
 from httptoolkit.transport import HttpxTransport
-from httptoolkit.request import Request
 
 
 class DummyService(Service):
@@ -110,7 +108,7 @@ service = DummyService(
 # Do not send with body and files
 service.post(
     path="/somewhere",
-    headers=(Header(name="SuperSecret", value="big_secret", is_sensitive=True, create_mask=lambda value: value[-4:])),
+    headers=(Header(name="SuperSecret", value="big_secret", is_sensitive=True, create_mask=lambda value: value[-4:]),),
     params={"over": "the rainbow"},
     json={
         "param1": 1,
