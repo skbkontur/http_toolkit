@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.0.1
+
+**Date:** [09.10.24]
+
+* Little fix of info in README
+
 ### 1.0.0
 
 **Date:** [08.10.24]

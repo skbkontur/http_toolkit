@@ -162,5 +162,5 @@ All about Transport
 - [HttpxTransport](https://github.com/skbkontur/http_toolkit/tree/master/docs/TRANSPORT.md#transport)
 - [Creating your own Transport](https://github.com/skbkontur/http_toolkit/tree/master/docs/TRANSPORT.md#custom-transport)
 
-OpenTelemetry
+## OpenTelemetry
 Allows using [OpenTelemetry HTTPX](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-httpx) to add request tracing via [http_toolkit](https://github.com/skbkontur/http_toolkit) in case [HttpxTransport](https://github.com/skbkontur/http_toolkit/tree/master/docs/TRANSPORT.md#transport) is used.
