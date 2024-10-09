@@ -305,7 +305,9 @@ def test_send_post_request_error_json_and_files(
 def test_send_post_request_error_json_and_body(
     transport: HttpxTransport, httpx_mock: HTTPXMock, test_file: BinaryIO
 ) -> None:
-    request = Request(HttpMethod.POST, "/", {}, body="Just another boring text for test!", json={"param1": 1, "param2": 2})
+    request = Request(
+        HttpMethod.POST, "/", {}, body="Just another boring text for test!", json={"param1": 1, "param2": 2}
+    )
     with pytest.raises(RuntimeError) as error:
         transport.send(request)
     assert str(error.value) == "json and body can't be sent together"
