@@ -50,6 +50,25 @@ jobs:
           pip install $TEST_DEPENDENCIES
       - name: test
         run: tox -e "py3${{ matrix.minor_versions }}"
+  build:
+    runs-on: ubuntu-latest
+    env:
+      BUILD_DEPENDENCIES: "build~=0.10.0"
+    steps:
+      - uses: actions/checkout@v4
+      - name: python-build
+        uses: ./.github/actions/python-build
+      - name: install-dependencies
+        run: python3 -m pip install $BUILD_DEPENDENCIES $PUSH_DEPENDENCIES
+      - name: build
+        run: |
+          ls .
+          python -m build
+      - name: store-dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
       
         
 
