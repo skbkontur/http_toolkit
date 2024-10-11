@@ -1,10 +1,10 @@
 # Changelog
 
-### 1.1.0
+### 1.0.2
 
 **Date:** [11.10.24]
 
-* Fix of find_packages
+* Switching setuptools configuration to flat-layout to add missing packages
 
 ### 1.0.1
 
