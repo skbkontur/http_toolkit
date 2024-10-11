@@ -60,7 +60,7 @@ non_interactive = true
 exclude = ["env", "venv", "build"]
 
 [tool.setuptools.packages.find]
-where = ["httptoolkit"]
+include = ["httptoolkit.*", "httptoolkit"]
 
 [tool.setuptools.dynamic]
 version = {attr = "httptoolkit._version.__version__"}
