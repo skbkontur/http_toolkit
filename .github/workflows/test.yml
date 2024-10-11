@@ -50,8 +50,3 @@ jobs:
           pip install $TEST_DEPENDENCIES
       - name: test
         run: tox -e "py3${{ matrix.minor_versions }}"
-      
-        
-
-
-

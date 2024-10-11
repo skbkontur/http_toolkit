@@ -59,8 +59,5 @@ install_types = true
 non_interactive = true
 exclude = ["env", "venv", "build"]
 
-[tool.setuptools.packages.find]
-include = ["httptoolkit"]
-
 [tool.setuptools.dynamic]
 version = {attr = "httptoolkit._version.__version__"}

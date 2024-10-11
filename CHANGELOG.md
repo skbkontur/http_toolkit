@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.0.2
+
+**Date:** [11.10.24]
+
+* Switching setuptools configuration to flat-layout to add missing packages
+
 ### 1.0.1
 
 **Date:** [09.10.24]
